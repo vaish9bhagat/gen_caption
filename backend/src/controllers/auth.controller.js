@@ -24,7 +24,7 @@ const registercontroller = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
     res.cookie("token", token, {
         httpOnly: true,
-        secure: false, // Must be false for http://
+        secure: false,
         sameSite: 'Lax',
         path: '/',
         maxAge: 604800000

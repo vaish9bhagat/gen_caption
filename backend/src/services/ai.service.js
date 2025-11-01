@@ -1,6 +1,6 @@
 const { GoogleGenAI } = require("@google/genai");
 
-const ai = new GoogleGenAI({});
+const ai = new GoogleGenAI(process.env.GEMINI_API_KEY);
 
 const captiongenerator = async (base64ImageFile) => {
     const contents = [

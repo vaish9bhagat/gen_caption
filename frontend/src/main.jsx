@@ -8,6 +8,10 @@ createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     {" "}
     <App />
-    <ToastContainer position="top-center" toastClassName="apptoast" />
+    <ToastContainer
+      toastStyle={{ backgroundColor: "#1F2227", color: "#fff" }}
+      position="top-center"
+     
+    />
   </BrowserRouter>
 );

@@ -4,14 +4,21 @@ const authroutes = require("./routes/auth.routes");
 const postroutes = require("./routes/post.routes");
 const profileroutes = require("./routes/profile.routes");
 const cors = require('cors');
+const path = require("path");
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../public")))
 app.use(cookieParser());
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use("/auth", authroutes);
 app.use("/post", postroutes);
 app.use("/user", profileroutes);
+
+app.get("*", (req, res) => {
+    res.sendFile(__dirname, "../public/index.html")
+
+})
 
 
 

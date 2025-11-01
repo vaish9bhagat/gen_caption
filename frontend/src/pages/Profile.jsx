@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const Profile = () => {
       console.log(res);
     } catch (error) {
       console.log(error);
+      toast.error("you are not logged in ,login first");
+      navigate("/login");
     }
   };
   useEffect(() => {
@@ -42,12 +45,13 @@ const Profile = () => {
 
   return (
     <div className="w-[94%] h-[94%] flex items-center justify-center ">
-      <div className="w-1/3  p-4 bg-white/50 backdrop-blur-sm flex flex-row  items-center  justify-center gap-12 rounded">
-        <div className="flex gap-2 flex-col items-center justify-center">
-          <h3 className="text-2xl">{user}</h3>
+      <div className="md:w-1/3  md:p-4 p-16 bg-[#1F2227] text-white  flex   items-center  justify-center gap-12 rounded">
+        <div className="flex gap-4  flex-col items-center justify-center">
+          <h1 className="font-semibold text-4xl md:text-2xl">Username</h1>
+          <h3 className="text-3xl md:text-2xl">@{user}</h3>
           <button
             onClick={logouthandler}
-            className="bg-green-950 text-white px-2 py-1 rounded"
+            className="bg-[#00AE66] text-white px-6 py-3 md:px-3 md:py-1 rounded"
           >
             Log Out
           </button>

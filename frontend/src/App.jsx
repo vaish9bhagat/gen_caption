@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
-    <div className=" h-screen w-screen  bg-[url('/bg.jpg')] bg-no-repeat bg-center bg-cover flex items-center justify-between flex-col p-4">
+    <div className=" h-screen w-screen  bg-[#121315] bg-no-repeat bg-center bg-cover flex items-center justify-between flex-col p-4">
       <Navbar />
       <Approutes />
     </div>
