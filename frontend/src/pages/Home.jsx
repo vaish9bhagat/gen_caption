@@ -10,17 +10,23 @@ const Home = forwardRef((props, divref) => {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`https://capgen-7lpn.onrender.com/post/allposts`, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        setPost(res.data.posts);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("you are not logged in login first");
-        navigate("/login");
-      });
+    try {
+      axios
+        .get(`https://capgen-7lpn.onrender.com/post/allposts`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setPost(res.data.posts);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("you are not logged in login first");
+          navigate("/login");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const allposts = post?.map((post, index) => {

@@ -16,15 +16,19 @@ const Login = () => {
 
   const loginhandler = async (user) => {
     console.log(user);
-    axios
-      .post(`https://capgen-7lpn.onrender.com/auth/login`, user, { withCredentials: true })
+    
+    await axios
+      .post(`https://capgen-7lpn.onrender.com/auth/login`, user, {
+        withCredentials: true,
+      })
       .then((res) => {
         toast.success(res.data.message);
         navigate("/home");
-
+        console.log(res);
         reset();
       })
       .catch((err) => {
+        console.log(err);
         toast.error(err.response.data.message, {
           style: {
             background: "#1F2227", // dark gray

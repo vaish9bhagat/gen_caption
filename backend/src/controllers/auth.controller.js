@@ -25,8 +25,7 @@ const registercontroller = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         secure: false,
-        sameSite: 'Lax',
-        path: '/',
+        sameSite: "none",
         maxAge: 604800000
     });
 
