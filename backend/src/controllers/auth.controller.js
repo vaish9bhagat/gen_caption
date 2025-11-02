@@ -59,8 +59,8 @@ const logincontroller = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false, // Must be false for http://
-            sameSite: 'Lax',
+            secure: true,
+            sameSite: 'none',
             path: '/',
             maxAge: 604800000
         });
