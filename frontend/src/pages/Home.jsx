@@ -16,8 +16,8 @@ const Home = forwardRef((props, divref) => {
           withCredentials: true,
         })
         .then((res) => {
-         
           setPost(res.data.posts.reverse());
+          console.log(res)
         })
         .catch((err) => {
           console.log(err);
@@ -29,16 +29,19 @@ const Home = forwardRef((props, divref) => {
     }
   }, []);
 
+  const deletePost=async(user)
+
   const allposts = post?.map((post, index) => {
     return (
       <div
         key={index}
         className="md:w-1/3  w-full p-2 rounded bg-[#1F2227] text-white backdrop-blur-sm  flex flex-col gap-2"
       >
-        <div>
-          <img src="" alt="" />
+        <div className="flex items-center justify-between">
+         
+          <i onClick={()=>deletePost(post.user)} className="ri-close-circle-line text-2xl text-[#07B26C]"></i>
         </div>
-        <img className="h-42 w-full object-cover " src={post?.image} alt="" />
+        <img className=" w-full object-cover object-center " src={post?.image} alt="" />
         <p>{post.caption}</p>
         <div ref={divref} />
       </div>

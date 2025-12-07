@@ -38,12 +38,24 @@ const showpostcontroller = async (req, res) => {
 
 
     res.json({
-        message: "post fetched successfully",
+     
         posts,
+        user
 
 
 
     })
+}
+const deletepostcontroller = async (req, res) => {
+    const { postId } = req.params;
+    await postmodel.deleteOne({ _id: postId });
+    const allPosts = await postmodel.find();
+    res.json({
+        message: "post fetched successfully",
+        allPosts
+    })
+
+
 }
 module.exports = {
     createpostcontroller,
