@@ -3,7 +3,9 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import TagManager from "react-gtm-module";
 
+ TagManager.initialize({ gtmId: "GTM-WN986WT5" })
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     {" "}
