@@ -38,7 +38,7 @@ const Home = forwardRef((props, divref) => {
       >
         <div className="flex items-center justify-between">
           <i
-            onClick={() => deletePost(post.user)}
+            
             className="ri-close-circle-line text-2xl text-[#07B26C]"
           ></i>
         </div>

@@ -22,6 +22,9 @@ const Createpost = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
+
+
+    
     try {
       const response = await axios.post(
         "https://capgen-7lpn.onrender.com/post/createpost",
