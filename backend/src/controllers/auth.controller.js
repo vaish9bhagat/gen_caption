@@ -60,9 +60,8 @@ const logincontroller = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
-            sameSite: 'none',
-            path: '/',
-            maxAge: 604800000
+            sameSite: 'none'
+           
         });
 
         res.json({

@@ -11,9 +11,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")))
 app.use(cookieParser());
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        'https://capgen-7lpn.onrender.com'], credentials: true
+    origin: 'https://capgen-7lpn.onrender.com',
+    credentials: true
 }));
 app.use("/auth", authroutes);
 app.use("/post", postroutes);
