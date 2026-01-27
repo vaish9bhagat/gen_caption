@@ -12,8 +12,9 @@ const Home = forwardRef((props, divref) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+         const API_URL = process.env.REACT_APP_API_URL
         const res = await axios.get(
-          "https://capgen-7lpn.onrender.com/post/allposts",
+          `${API_URL}/post/allposts`,
           { withCredentials: true },
         );
         setPost(res.data.posts.reverse());

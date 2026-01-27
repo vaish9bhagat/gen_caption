@@ -24,10 +24,11 @@ const Createpost = () => {
     formData.append("file", file);
 
 
-    
+
     try {
+       const API_URL = process.env.REACT_APP_API_URL
       const response = await axios.post(
-        "https://capgen-7lpn.onrender.com/post/createpost",
+        `${API_URL}/post/createpost`,
         formData,
         {
           headers: {

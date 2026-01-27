@@ -11,7 +11,8 @@ const Profile = () => {
 
   const fetchdata = async () => {
     try {
-      const res = await axios.get(`https://capgen-7lpn.onrender.com/user/profile`, {
+       const API_URL = process.env.REACT_APP_API_URL
+      const res = await axios.get(`${API_URL}/user/profile`, {
         withCredentials: true,
       });
       setuser(res.data.user.username);

@@ -16,9 +16,9 @@ const Login = () => {
 
   const loginhandler = async (user) => {
     console.log(user);
-    
+     const API_URL = process.env.REACT_APP_API_URL
     await axios
-      .post(`https://capgen-7lpn.onrender.com/auth/login`, user, {
+      .post(`${API_URL}/auth/login`, user, {
         withCredentials: true,
       })
       .then((res) => {

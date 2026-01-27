@@ -14,8 +14,9 @@ const Register = () => {
   } = useForm();
 
   const registerhandler = async (user) => {
+    const API_URL = process.env.REACT_APP_API_URL
     axios
-      .post(`https://capgen-7lpn.onrender.com/auth/register`, user, {
+      .post(`${API_URL}/auth/register`, user, {
         withCredentials: true,
       })
       .then((res) => {
