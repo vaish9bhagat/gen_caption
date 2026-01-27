@@ -24,7 +24,7 @@ const Createpost = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        "http://localhost:3000/post/createpost",
+        "https://capgen-7lpn.onrender.com/post/createpost",
         formData,
         {
           headers: {
