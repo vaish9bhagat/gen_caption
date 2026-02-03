@@ -37,17 +37,17 @@ const Register = () => {
         >
           <h1 className="text-3xl md:text-2xl font-semibold">Register</h1>{" "}
           <input
-            {...register("fullname", { required: "username field is empty" })}
+            {...register("fullname", { required: "fullname field is empty" })}
             className="text-2xl md:text-xl  border rounded  border-[#07B26C] text-white outline-0"
             type="text"
             id=""
             placeholder="Enter Fullname"
           />
-          {errors.username && (
-            <small className="text-red-800">{errors.username.message}</small>
+          {errors.fullname && (
+            <small className="text-red-800">{errors.fullname.message}</small>
           )}
           <input
-            {...register("email", { required: "username field is empty" })}
+            {...register("email", { required: "fullname field is empty" })}
             className="text-2xl md:text-xl  border rounded border-[#07B26C] text-white outline-0"
             type="email"
             id=""
