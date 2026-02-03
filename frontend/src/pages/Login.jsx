@@ -16,7 +16,7 @@ const Login = () => {
 
   const loginhandler = async (user) => {
     try {
-      const res = await axios.post(`http://localhost:3000/auth/login`, user, {
+      const res = await axios.post(`https://gen-caption.onrender.com/auth/login`, user, {
         withCredentials: true,
       });
       if (res) {

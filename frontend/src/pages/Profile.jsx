@@ -15,7 +15,7 @@ const Profile = () => {
   const deleteHandler = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/post/deletepost/${id}`,
+        `https://gen-caption.onrender.com/post/deletepost/${id}`,
         {
           withCredentials: true,
         },
@@ -33,7 +33,7 @@ const Profile = () => {
   const userPosts = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/post/userposts/",
+        "https://gen-caption.onrender.com/post/userposts/",
         {},
         { withCredentials: true },
       );
@@ -45,7 +45,7 @@ const Profile = () => {
 
   const fetchdata = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/user/profile`, {
+      const res = await axios.get(`https://gen-caption.onrender.com/user/profile`, {
         withCredentials: true,
       });
       setuser(res.data.user);
@@ -66,7 +66,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:3000/auth/logout`,
+        `https://gen-caption.onrender.com/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -109,7 +109,7 @@ const Profile = () => {
     formdata.append("image", file);
     try {
       const res = await axios.post(
-        "http://localhost:3000/post/userprofileimage",
+        "https://gen-caption.onrender.com/post/userprofileimage",
         formdata,
         { withCredentials: true },
       );

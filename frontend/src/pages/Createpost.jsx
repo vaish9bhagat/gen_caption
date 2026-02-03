@@ -21,7 +21,7 @@ const Createpost = () => {
     formData.append("location", location);
     try {
       const response = await axios.post(
-        `http://localhost:3000/post/createpost`,
+        `https://gen-caption.onrender.com/post/createpost`,
         formData,
         {
           withCredentials: true,

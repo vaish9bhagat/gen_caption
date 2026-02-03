@@ -11,7 +11,7 @@ const Home = forwardRef((props, divref) => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/post/allposts`, {
+      const res = await axios.get(`https://gen-caption.onrender.com/post/allposts`, {
         withCredentials: true,
       });
       setPost(res?.data?.posts?.reverse());
@@ -27,7 +27,7 @@ const Home = forwardRef((props, divref) => {
   const likePost = async (postId) => {
     try {
       const res = await axios.post(
-        `http://localhost:3000/post/likepost/${postId}`,
+        `https://gen-caption.onrender.com/post/likepost/${postId}`,
         {},
         { withCredentials: true },
       );
