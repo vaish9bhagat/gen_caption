@@ -10,8 +10,17 @@ const postschema = new mongoose.Schema({
         required: true
     },
     user: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "users"
+    },
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+
+    }],
+    location: {
+        type: String,
+
     }
 })
 

@@ -4,30 +4,26 @@ const bcrypt = require("bcryptjs");
 
 
 const registercontroller = async (req, res) => {
-    const { username, password } = req.body;
+    const { fullname, email, password } = req.body;
 
-    const userexist = await usermodel.findOne({ username });
+    const userexist = await usermodel.findOne({ email });
 
     if (userexist) {
         return res.status(409).json({
-            message: "user with this username already exist in DB"
+            message: "user with this username already exists"
         })
 
     }
 
     const user = await usermodel.create({
-        username,
-        password: await bcrypt.hash(password, 10)
+        fullname,
+        password: await bcrypt.hash(password, 10),
+        email
 
     })
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "none",
-        maxAge: 604800000
-    });
+    res.cookie("token", token);
 
     res.status(201).json({
         message: "user registered successfully ",
@@ -37,14 +33,14 @@ const registercontroller = async (req, res) => {
 
 }
 const logincontroller = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
 
-    const user = await usermodel.findOne({ username });
+    const user = await usermodel.findOne({ email });
 
     if (!user) {
         return res.status(401).json({
-            message: "invalid username try again"
+            message: "invalid email try again"
         })
     }
     const ispasswordval = await bcrypt.compare(password, user.password);
@@ -57,12 +53,7 @@ const logincontroller = async (req, res) => {
 
     try {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none'
-           
-        });
+        res.cookie("token", token);
 
         res.json({
             message: "user logged in successfully",

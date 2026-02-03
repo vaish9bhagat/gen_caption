@@ -15,27 +15,18 @@ const Login = () => {
   } = useForm();
 
   const loginhandler = async (user) => {
-    console.log(user);
-     const API_URL = process.env.REACT_APP_API_URL
-    await axios
-      .post(`${API_URL}/auth/login`, user, {
+    try {
+      const res = await axios.post(`http://localhost:3000/auth/login`, user, {
         withCredentials: true,
-      })
-      .then((res) => {
+      });
+      if (res) {
         toast.success(res.data.message);
         navigate("/home");
-        console.log(res);
         reset();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.response.data.message, {
-          style: {
-            background: "#1F2227", // dark gray
-            color: "#fff", // text color
-          },
-        });
-      });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="h-screen w-screen  flex justify-center items-center flex-row gap-2">
@@ -47,11 +38,11 @@ const Login = () => {
           <h1 className="text-3xl md:text-2xl font-semibold">Login</h1>
           <div className="flex flex-col gap-1">
             <input
-              {...register("username", { required: "username field is empty" })}
-              className="text-2xl md:text-xl  border-b border-[#07B26C] text-white outline-0"
-              type="text"
+              {...register("email", { required: "username field is empty" })}
+              className="text-2xl md:text-xl  border rounded border-[#07B26C] text-white outline-0"
+              type="email"
               id=""
-              placeholder="Enter Username"
+              placeholder="Enter Email"
             />
             {errors.username && (
               <small className="text-red-800">{errors.username.message}</small>
@@ -61,7 +52,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <input
               {...register("password", { required: "password field is empty" })}
-              className=" text-2xl md:text-xl border-b border-[#07B26C] text-white outline-0"
+              className=" text-2xl md:text-xl border rounded border-[#07B26C] text-white outline-0"
               type="password"
               id="1"
               placeholder="Enter Password"
@@ -77,7 +68,7 @@ const Login = () => {
           >
             Log in
           </button>
-          <p className="text-center">If dont have An Account!</p>
+          <p className="text-center">If you dont have An Account!</p>
           <NavLink
             className="border-b  text-2xl md:text-xl text-[#07B26C]"
             to="/"

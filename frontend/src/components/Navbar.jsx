@@ -3,24 +3,24 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="h-12 w-full flex flex-row items-start justify-center gap-6 text-2xl text-white">
+    <div className="h-12 w-full md:w-1/3 flex flex-row items-center justify-around  text-3xl text-white">
       <NavLink
         className={(e) => (e.isActive ? "border-b-4 border-green-500" : "")}
         to="/profile"
       >
-        Profile{" "}
+        <i class="ri-account-circle-fill"></i>
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "border-b-4 border-green-500" : "")}
         to="/home"
       >
-        Home
+        <i class="ri-home-7-fill"></i>
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "border-b-4 border-green-500" : "")}
         to="/createpost"
       >
-        Create Post
+       <i class="ri-upload-cloud-fill"></i>
       </NavLink>
     </div>
   );

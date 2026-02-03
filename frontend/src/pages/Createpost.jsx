@@ -8,11 +8,7 @@ import { toast } from "react-toastify";
 const Createpost = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
-
-  const divref = useRef(null);
-  const scrollbottam = () => {
-    divref.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [location, setlocation] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -22,37 +18,34 @@ const Createpost = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-
-
-
+    formData.append("location", location);
     try {
-       const API_URL = process.env.REACT_APP_API_URL
       const response = await axios.post(
-        `${API_URL}/post/createpost`,
+        `http://localhost:3000/post/createpost`,
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
           withCredentials: true,
-        }
+        },
       );
-      console.log(response.data);
-      toast.success("post created successfully!");
-      navigate("/home");
-      setTimeout(scrollbottam, 0);
+
+      if (response.status === 201) {
+        toast.success("post created successfully!");
+        navigate("/home");
+      } else {
+        toast.error(response.data.message);
+        navigate("/createpost");
+      }
     } catch (error) {
-      console.error(error);
       toast.error("you are not logged in login first");
       navigate("/login");
     }
   };
   useEffect(() => {
-    handleUpload()
+    handleUpload();
   }, []);
   return (
     <div className="h-[94%] w-[94%]  flex items-center justify-center ">
-      <div className="md:h-1/2 w-full  md:w-1/3 bg-[#1F2227] text-white backdrop-blur-sm p-4 flex items-center justify-center flex-col gap-3 rounded">
+      <div className=" w-full  md:w-1/3 bg-[#1F2227] text-white backdrop-blur-sm p-4 flex items-center justify-center flex-col gap-3 rounded">
         {" "}
         <h1 className="md:text-xl text-3xl font-semibold">Create Post</h1>
         <form
@@ -60,13 +53,37 @@ const Createpost = () => {
           className="w-full h-full flex flex-col items-center text-center  justify-center gap-4"
           action=""
         >
+          <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer  hover:bg-gray-100 transition">
+            <svg
+              className="w-8 h-8 mb-2 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16V12m0 0V8m0 4h4m6 4V8m0 8a4 4 0 01-4 4H7a4 4 0 01-4-4V8a4 4 0 014-4h5l4 4h1a4 4 0 014 4z"
+              />
+            </svg>
+
+            <span className="text-sm text-white">Click to select Post</span>
+
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </label>
           <input
-            className="md:ml-20 ml-35 text-2xl text-center"
-            type="file"
-            name=""
+            value={location}
+            onChange={(e) => setlocation(e.target.value)}
+            type="text"
             id=""
-            placeholder="submit image"
-            onChange={handleFileChange}
+            placeholder="Enter the Location"
+            className="border rounded p-1"
           />
 
           <button

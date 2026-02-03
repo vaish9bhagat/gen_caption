@@ -14,9 +14,8 @@ const Register = () => {
   } = useForm();
 
   const registerhandler = async (user) => {
-    const API_URL = process.env.REACT_APP_API_URL
     axios
-      .post(`${API_URL}/auth/register`, user, {
+      .post(`http://localhost:3000/auth/register`, user, {
         withCredentials: true,
       })
       .then((res) => {
@@ -36,35 +35,40 @@ const Register = () => {
           onSubmit={handleSubmit(registerhandler)}
           className=" h-full w-full flex flex-col justify-center items-center md:gap-3 gap-6"
         >
-          <h1 className="text-3xl md:text-2xl font-semibold">Register</h1>
-          <div className="flex flex-col gap-1">
-            {" "}
-            <input
-              {...register("username", { required: "username field is empty" })}
-              className="text-2xl md:text-xl  border-b border-[#07B26C] text-white outline-0"
-              type="text"
-              id=""
-              placeholder="Enter Username"
-            />
-            {errors.username && (
-              <small className="text-red-800">{errors.username.message}</small>
-            )}
-          </div>
-          <div className="flex flex-col gap-1">
-            <input
-              {...register("password", { required: "password field is empty" })}
-              className=" text-2xl md:text-xl border-b border-[#07B26C] text-white outline-0"
-              type="password"
-              id="1"
-              placeholder="Enter Password"
-            />
-            {errors.password && (
-              <small className="text-red-800">{errors.password.message}</small>
-            )}
-          </div>
+          <h1 className="text-3xl md:text-2xl font-semibold">Register</h1>{" "}
+          <input
+            {...register("fullname", { required: "username field is empty" })}
+            className="text-2xl md:text-xl  border rounded  border-[#07B26C] text-white outline-0"
+            type="text"
+            id=""
+            placeholder="Enter Fullname"
+          />
+          {errors.username && (
+            <small className="text-red-800">{errors.username.message}</small>
+          )}
+          <input
+            {...register("email", { required: "username field is empty" })}
+            className="text-2xl md:text-xl  border rounded border-[#07B26C] text-white outline-0"
+            type="email"
+            id=""
+            placeholder="Enter email"
+          />
+          {errors.email && (
+            <small className="text-red-800">{errors.email.message}</small>
+          )}
+          <input
+            {...register("password", { required: "password field is empty" })}
+            className=" text-2xl md:text-xl border rounded border-[#07B26C] text-white outline-0"
+            type="password"
+            id="1"
+            placeholder="Enter Password"
+          />
+          {errors.password && (
+            <small className="text-red-800">{errors.password.message}</small>
+          )}
           <button
             type="submit"
-            className="bg-[#07B26C] text-2xl md:text-xl text-white px-4 py-1 rounded"
+            className="bg-[#07B26C] text-2xl md:text-xl text-white px-4 py-1 rounded hover:scale-90"
           >
             Register
           </button>
