@@ -41,6 +41,7 @@ const showpostcontroller = async (req, res) => {
         .sort({ createdAt: -1 });
 
     const user = req.user;
+    console.log(user)
 
 
     res.json({
