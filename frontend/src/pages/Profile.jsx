@@ -21,7 +21,7 @@ const Profile = () => {
         },
       );
       setuserposts(res?.data?.posts?.reverse());
-      userPosts()
+      userPosts();
       console.log(res);
       const msg = res?.data?.message;
       toast.error(msg, { style: { background: "#1F2227", color: "#fff" } });
@@ -45,9 +45,12 @@ const Profile = () => {
 
   const fetchdata = async () => {
     try {
-      const res = await axios.get(`https://gen-caption.onrender.com/user/profile`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://gen-caption.onrender.com/user/profile`,
+        {
+          withCredentials: true,
+        },
+      );
       setuser(res.data.user);
       console.log(res.data.user);
       console.log(res);

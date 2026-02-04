@@ -11,9 +11,10 @@ const Home = forwardRef((props, divref) => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`https://gen-caption.onrender.com/post/allposts`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://gen-caption.onrender.com/post/allposts`,
+        { withCredentials: true },
+      );
       setPost(res?.data?.posts?.reverse());
     } catch (err) {
       console.log(err);
@@ -52,12 +53,12 @@ const Home = forwardRef((props, divref) => {
             <div className="flex items-center  justify-center gap-1.5">
               <img
                 className="w-5 h-5 rounded-full"
-                src={post.user.profileimage}
+                src={post?.user?.profileimage}
                 alt=""
               />
-              <p className="text-xl">{post.user.username}</p>
+              <p className="text-xl">{post?.user?.username}</p>
             </div>
-            {post.location && (
+            {post?.location && (
               <span className="flex items-center justify-center text-[12px] mt-1.5">
                 <i class="ri-map-pin-fill"></i>
                 <p>{post?.location}</p>
@@ -70,7 +71,7 @@ const Home = forwardRef((props, divref) => {
             src={post?.image}
             alt=""
           />
-          <span onClick={() => likePost(post._id)} className="text-xl">
+          <span onClick={() => likePost(post?._id)} className="text-xl">
             <i class="ri-thumb-up-fill"></i> {post?.likes?.length}
           </span>
 
